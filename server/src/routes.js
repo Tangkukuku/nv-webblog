@@ -1,11 +1,13 @@
 const UserController = require('./controllers/UserController')
 
+
 module.exports = (app) => {
     /* RESFUL Api for users management */
     // create user
     app.post('/user',
         UserController.create
     )
+
     // edit user, suspend, active
     app.put('/user/:userId',
         UserController.put
