@@ -22,6 +22,12 @@ module.exports = (app) => {
     app.get('/user/:userId',
         UserController.show
     )
+
+        // get last user
+        app.get('/lastuser',
+        UserController.lastuser
+    )
+
     // get all user
     app.get('/users',
         //isAuthenController, ใช้เช็ค token

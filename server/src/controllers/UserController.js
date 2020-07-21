@@ -76,4 +76,18 @@ module.exports = {
             })
         }
     },
+    // get last user 
+async lastuser (req, res) {
+    try {
+        const users = await User.findAll()
+        res.send(users[2])
+            
+        
+    } catch (err) {
+        req.status(500).send({
+            error: 'The user information was incorrect'
+         })
+        }
+    }
+
 }

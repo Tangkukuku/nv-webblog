@@ -47,9 +47,12 @@ app.get('/user/:userId', function (req, res) {
 app.get('/users', function (req, res) {
     res.send('เรียกข้อมูลผู้ใช้งานทั้งหมด')
 })
-
  
-
+// get lastuser
+app.get('/lastuser', function (req, res) {
+    res.send('ID สุดท้าย: ' + JSON.stringify(req.body))
+    })
+    
 // create user
 app.post('/user/', function (req, res) {
     res.send('ทำการสร้างผู้ใช้งาน: ' + JSON.stringify(req.body))
