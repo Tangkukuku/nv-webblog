@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             return true
         }
         return false
-        }
+    }
 
     User.associate = function (models) {}
     

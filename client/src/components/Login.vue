@@ -29,7 +29,10 @@ export default {
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
 
-                console.log(response)
+                this.$router.push({
+                    name: 'users'
+                })
+                //console.log(response)
 
             } catch (error) {
                 console.log(error)

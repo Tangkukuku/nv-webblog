@@ -1,6 +1,6 @@
 const UserController = require('./controllers/UserController')
 const UserAuthenController = require('./controllers/UserAuthenController')
-//const isAuthenController = require('./controllers/isAuthenController') ใช้เช็ค token
+//const isAuthenController = require('./controllers/isAuthenController') //ใช้เช็ค token
 
 
 module.exports = (app) => {
@@ -23,14 +23,14 @@ module.exports = (app) => {
         UserController.show
     )
 
-        // get last user
-        app.get('/lastuser',
+    // get last user
+    app.get('/lastuser',
         UserController.lastuser
     )
 
     // get all user
     app.get('/users',
-        //isAuthenController, ใช้เช็ค token
+        //isAuthenController,// ใช้เช็ค token
         UserController.index
     )
     app.post('/login',

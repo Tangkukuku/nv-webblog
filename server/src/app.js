@@ -51,7 +51,7 @@ app.get('/users', function (req, res) {
 // get lastuser
 app.get('/lastuser', function (req, res) {
     res.send('ID สุดท้าย: ' + JSON.stringify(req.body))
-    })
+})
     
 // create user
 app.post('/user/', function (req, res) {
