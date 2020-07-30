@@ -1,12 +1,14 @@
 <template>
-    <div>
-        <h1>User Login</h1>
-        <form v-on:submit.prevent="onLogin">
-            <p>Username: <input type="text" v-model="email" /></p>
-            <p>Password: <input type="password" v-model="password" /></p>
-            <p><button type="submit">Login</button></p>
-        </form>
-    </div>
+<div>
+    <h1>User Login</h1>
+    <form v-on:submit.prevent="onLogin">
+        <p>Username: <input type="text" v-model="email" /></p>
+        <p>Password: <input type="password" v-model="password" /></p>
+        <p><button type="submit">Login</button></p>
+        <div class="error" v-if="error">{{error}}</div>
+    </form>
+</div>
+
 </template>
 <script>
 
@@ -14,8 +16,9 @@ import AuthenService from '@/services/AuthenService'
 export default {
     data () {
         return {
-        email: '',
-        password: ''
+            email: '',
+            password: '',
+            error: null
         }
     },
     methods: {
@@ -32,12 +35,20 @@ export default {
                 this.$router.push({
                     name: 'users'
                 })
-                //console.log(response)
 
             } catch (error) {
                 console.log(error)
+                this.error = error.response.data.error
+                this.email = ''
+                this.password = ''
             }
+
         }
     }
 }
 </script>
+<style scoped>
+    .error {
+    color:red;
+    }
+</style>

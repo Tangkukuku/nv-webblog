@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 function jwtSignUser (user) {
     const ONE_WEEK = 60 * 60 * 24 * 7
     return jwt.sign(user, config.authentication.jwtSecret, {
-        expiresIn: ONE_WEEK
+        expiresIn: ONE_WEEK //วันหมดอายุ
     })
 }
 
@@ -30,20 +30,21 @@ module.exports = {
             })
             if(!user) {
                 return res.status(403).send({
-                    error: 'User/Password not correct'
+                    error: 'User not found'
                 })
             }
             const isPasswordValid = await user.comparePassword(password)
             if (!isPasswordValid) {
                 return res.status(403).send({
-                    error: 'User/Password not correct'
+                    error: 'Password not correct'
                 })
             }
-            
+            const userJSON = user.toJSON() 
             res.send({
                 user: userJSON,
                 token: jwtSignUser(userJSON)
             })
+
 
         } catch (error) {
             res.status(500).send({

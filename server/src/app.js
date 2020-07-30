@@ -10,11 +10,13 @@ const config = require('./config/config')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors())
- 
+app.use('/assets', express.static('public'))
+
 // ถ้าเปิด จะล็อกอินได้แต่ ตอนนี้ยังส่ง token ไม่ได้
-//require('./userPassport')
+require('./userPassport')
 
 require('./routes')(app)
+
 
 
 let port = process.env.PORT || config.port
