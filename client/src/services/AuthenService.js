@@ -5,5 +5,8 @@ export default {
     },
     login (credentials) {
         return Api().post('login', credentials)
+    },
+    clientLogin (credentials) {
+        return Api().post('front/login', credentials)
     }
 }

@@ -1,0 +1,189 @@
+<template>
+<!-- new navbar -->
+<div >
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand navbar-link" href="#" v-on:click.prevent="navigateTo('/dashboard')">
+                    <img src="../assets/logo.png" id="logo">
+                </a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span><span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><router-link :to="{name: 'front'}"><i class="fas fa-home"></i> Home</router-link></li> 
+                    <li role="presentation"><router-link :to="{name: 'login'}">Login</router-link></li>
+                    <li role="presentation"><a href="#" von:click="logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="modal" v-if="showLogin">
+    <transition name="fade">
+        <div class="login-wrapper">
+        <h3>Client Login</h3>
+        <form v-on:submit.prevent="clientLogin" class="formhorizontal">
+            <div class="form-group">
+                <label class="control-label col-md-3">Email:</label>
+                <div class="col-md-9">
+                    <input placeholder="email" type="email" v-model="email" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3">Password:</label>
+                <div class="col-md-9">
+                    <input type="password" placeholder="password" vmodel="password" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button class="btn btn-success btn-sm" type="submit"><i class="fas fa-key"></i> Login</button>
+                    <button v-on:click.prevent="showLogin = false" class="btn btn-danger btn-sm" type="button"><i class="fas fa-timescircle"></i> Close</button>
+                </div>
+            </div>
+            <div class="error">
+                <p v-if="error">{{error}}</p>
+            </div>
+        </form>
+        </div>
+    </transition>
+    </div>
+    <transition name="fade">
+    <div v-if="resultUpdated != ''" class="popup-msg">
+    <p>{{ resultUpdated }}</p>
+    </div>
+    </transition>-->
+</div>
+
+</template>
+<script>
+import AuthenService from '@/services/AuthenService'
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            error: '',
+            showLogin: false,
+            resultUpdated: ''
+        }
+    },
+    /*computed: {
+        ...mapState([
+            'isUserLoggedIn',
+            'user'
+        ]),
+    },*/
+    methods: {
+        logout () {
+            this.$store.dispatch('setToken', null)
+            this.$store.dispatch('setUser', null)
+            /*this.$router.push({
+                name: 'login'
+            })*/
+            this.resultUpdated = "Logout successful."
+            setTimeout(() => this.resultUpdated = '', 3000)
+        }
+    },
+    async clientLogin () {
+        console.log(`acc: ${this.email} -${this.password}`)
+        try {
+            const response = await AuthenService.clientLogin({
+                email: this.email,
+                password: this.password
+            })
+
+            this.error = ''
+
+            this.$store.dispatch('setToken', response.data.token)
+            this.$store.dispatch('setUser', response.data.user)
+
+            this.email = '',
+            this.password = '',
+            this.showLogin = false
+            this.resultUpdated = "Login successful."
+            setTimeout(() => this.resultUpdated = '', 3000)
+        } catch (error) {
+            console.log(error)
+            this.error = error.response.data.error
+            this.email = ''
+            this.password = ''
+            setTimeout(() => this.error = '', 3000)
+        }
+    },
+}
+</script>
+<style scoped>
+    .navbar-brand > img {
+        width: 36px;
+        padding: 12px 0;
+        margin-top: -20px;
+    }
+    .navbar-inverse {
+        background-color:#51415F;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+        color: #DBDBF6;
+    }
+    .login-wrapper {
+        margin-top: 80px;
+    }
+    .error {
+        color: red;
+        text-align: center;
+    }
+    .popup-msg {
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+        border: solid 1px #ddd;
+        background: #fff;
+        max-width:200px;
+        padding: 10px;
+        position:fixed;
+        bottom:0;
+        right:0;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+    .navbar-brand > img {
+        width: 36px;
+        padding: 12px 0;
+        margin-top: -20px;
+    }
+    .navbar-inverse {
+        background-color:#51415F;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+        color: #DBDBF6;
+    }
+    .modal {
+        display: block; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 10; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .login-wrapper {
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+        border: solid 1px #ddd;
+        width: 320px;
+        padding: 10px 30px 20px 30px;
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        /* padding: 20px; */
+    }
+    .login-wrapper h3 {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+</style>

@@ -1,10 +1,49 @@
 <template>
     <div>
-        <h1>Show User</h1>
-        <p>id: {{ user.id }}</p>
-        <p>ชืEอ-นามสกุล: {{ user.name }} - {{ user.lastname }}</p>
-        <p>email: {{ user.email }}</p>
-        <p>password: {{ user.password }}</p>
+        <main-header navsel="back"></main-header>
+        <br><br><br>
+        <center><h1>Show User</h1>
+        <table border="0">
+            <tr>
+                <th class="d">
+                    <center><b>id:</b></center>
+                </th>
+                <th class ="c">
+                    <div class="form-control center_div" readonly>id: {{ user.id }}</div>
+                </th>
+            </tr>
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>ชื่อ-นามสกุล:</b></center>
+                </th>
+                <th class ="c">
+                    <div class="form-control center_div" readonly> {{ user.name }} - {{ user.lastname }}</div>
+                </th>
+            </tr>
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>email:</b></center>
+                </th>
+                <th class ="c">
+                    <div class="form-control center_div" readonly> {{ user.email }}</div>
+                </th>
+            </tr>
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>password:</b></center>
+                </th>
+                <th class ="c">
+                    <div class="form-control center_div" readonly> {{ user.password }}</div>
+                </th>
+            </tr>
+        </table>
+        </center>
+        <br>
+        
+        <center><button class="btn btn-success btn-sm" v-on:click="navigateTo('/users')">Back..</button></center>
     </div>
 </template>
 <script>
@@ -22,8 +61,29 @@ export default {
         } catch (error) {
             console.log (error)
         }
-    }
+    },
+    methods: {
+      navigateTo (route) {
+         this.$router.push(route)
+      },
+      async deleteUser (user) {
+         await UsersService.delete(user)
+         this.refreshData()
+      },
+      async refreshData() {
+         this.users = (await UsersService.index()).data
+      },
+   }
 }
 </script>
 <style scoped>
+    .center_div {
+        width:100%;
+    }
+    .c {
+        width: 600px ;
+    }
+    .d{
+        width: 100px ;
+    }
 </style>

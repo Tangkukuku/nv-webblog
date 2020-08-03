@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "lodash": "^4.17.19",
+    "scrollmonitor": "^1.2.4",
     "vue": "^2.5.2",
     "vue-ckeditor2": "^2.1.5",
     "vue-resource": "^1.5.1",

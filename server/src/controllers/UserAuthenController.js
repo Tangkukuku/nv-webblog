@@ -39,7 +39,49 @@ module.exports = {
                     error: 'Password not correct'
                 })
             }
+            /*if(user.type != "admin") {
+                return res.status(403).send({
+                    error: 'Permission not correct'
+                })
+             }*/
+             
             const userJSON = user.toJSON() 
+
+            res.send({
+                user: userJSON,
+                token: jwtSignUser(userJSON)
+            })
+
+
+        } catch (error) {
+            res.status(500).send({
+                error: 'Error! from get user'
+            })
+        }
+    },
+    async clientLogin (req, res) {
+        try {
+            const {email, password} = req.body
+            const user = await User.findOne({
+                where: {
+                    email: email
+                }
+            })
+            if(!user) {
+                return res.status(403).send({
+                    error: 'User not found'
+                })
+            }
+            const isPasswordValid = await user.comparePassword(password)
+            if (!isPasswordValid) {
+                return res.status(403).send({
+                    error: 'Password not correct'
+                })
+            }
+            // dont't check permission type
+             
+            const userJSON = user.toJSON() 
+
             res.send({
                 user: userJSON,
                 token: jwtSignUser(userJSON)

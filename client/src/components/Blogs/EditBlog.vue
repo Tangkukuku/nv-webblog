@@ -1,8 +1,10 @@
 <template>
     <div>
+        <main-header navsel="back"></main-header>
+        <br><br>
         <h1>Edit Blog</h1>
         <form v-on:submit.prevent = "editBlog">
-            <p>title: <input type="text" v-model="blog.title"></p>
+            <p><strong>title:</strong> <input class="form-control" type="text" v-model="blog.title"></p>
             <transition name="fade">
                 <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
                     <img :src="BASE_URL+blog.thumbnail" alt="thumbnail">
@@ -28,19 +30,19 @@
                     <li v-for="picture in pictures" v-bind:key="picture.id">
                         <img style="margin-bottom:5px;" :src="BASE_URL+picture.name" alt="picture image">
                     <br>
-                    <button v-on:click.prevent="useThumbnail(picture.name)">Thumbnail</button>
-                    <button v-on:click.prevent="delFile(picture)">Delete</button>
+                    <button class="btn btn-sm btn-info" v-on:click.prevent="useThumbnail(picture.name)">Thumbnail</button>
+                    <button class="btn btn-sm btn-danger" v-on:click.prevent="delFile(picture)">Delete</button>
                     </li>
                 </transition-group>
                 <div class="clearfix"></div>
             </div> 
             <p><strong>content: </strong></p>
              <p><vue-ckeditor v-model.lazy="blog.content" :config="config" @blur="onBlur($event)" @focus="onFocus($event)" /></p>
-            <p>category: <input type="text" v-model="blog.category"></p>
-            <p>status: <input type="text" v-model="blog.status"></p>
+            <p><strong>category:</strong> <input class="form-control" type="text" v-model="blog.category"></p>
+            <p><strong>status:</strong> <input class="form-control" type="text" v-model="blog.status"></p>
             <p>
-                <button type="submit">update blog</button>
-                <button v-on:click="navigateTo('/blogs')">กลับ</button>
+                <button class="btn btn-sm btn-warning" type="submit">update blog</button>
+                <button class="btn btn-sm secondary" v-on:click="navigateTo('/blogs')">กลับ</button>
             </p>
         </form>
     </div>

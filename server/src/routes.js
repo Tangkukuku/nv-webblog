@@ -95,6 +95,9 @@ module.exports = (app) => {
     app.get('/comments',
         CommentController.index
     )
+    /*app.post('/front/login',
+        UserAuthenController.clientLogin
+    )*/
     // upload
     app.post("/upload", function(req, res) {
         // isUserAuthenticated,
@@ -122,4 +125,5 @@ module.exports = (app) => {
             })
         }
     })
+    
 }
