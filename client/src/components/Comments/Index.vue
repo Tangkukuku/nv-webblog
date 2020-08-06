@@ -4,6 +4,7 @@
         <div class="blog-header">
             <br><br><br>
             <h2>Get all comments</h2>
+            
             <div>
                 <form class="form-inline form-search">
                 <div class="form-group">
@@ -28,6 +29,7 @@
                 <button class="btn btn-sm btn-danger" v-on:click="deleteComment(comment)">ลบข้อมูล</button>
             </p>
         </div>
+        
     </div>
 </template>
 <script>

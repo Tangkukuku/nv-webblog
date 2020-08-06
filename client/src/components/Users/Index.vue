@@ -1,4 +1,5 @@
 <template>
+
    <div class="container">
       <main-header navsel="back"></main-header>
       <div class="blog-header">
@@ -39,8 +40,8 @@
             </div>
          </transition-group>
          
-      </div>
    </div>
+
 </template>
 <script>
 import UsersService from '@/services/UsersService'

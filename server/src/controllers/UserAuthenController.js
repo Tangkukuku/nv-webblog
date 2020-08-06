@@ -25,7 +25,10 @@ module.exports = {
             const {email, password} = req.body
             const user = await User.findOne({
                 where: {
-                    email: email
+                    email: email,
+                    //password: password,
+                    //status: 'active'
+
                 }
             })
             if(!user) {
@@ -39,11 +42,11 @@ module.exports = {
                     error: 'Password not correct'
                 })
             }
-            /*if(user.type != "admin") {
+            if(user.type != "admin") {
                 return res.status(403).send({
-                    error: 'Permission not correct'
+                    error: 'Permission not correct '
                 })
-             }*/
+             }
              
             const userJSON = user.toJSON() 
 
@@ -65,11 +68,14 @@ module.exports = {
             const user = await User.findOne({
                 where: {
                     email: email
+                    // password: password
+                    // status: 'active'
                 }
             })
+
             if(!user) {
                 return res.status(403).send({
-                    error: 'User not found'
+                    error: 'User/ not correct'
                 })
             }
             const isPasswordValid = await user.comparePassword(password)

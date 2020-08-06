@@ -20,7 +20,7 @@ module.exports = {
             res.send(user.toJSON())
         } catch (err) {
             res.status(500).send({
-                error: 'Create user incorrect'
+                error: 'User already in system'
             })
         }
     },

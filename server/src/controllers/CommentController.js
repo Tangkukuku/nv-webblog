@@ -72,5 +72,37 @@ module.exports = {
                 error: 'The comment information was incorrect'
             })
         }
+    },
+    // get comment by blog id
+ async blog (req, res) {
+    try {
+        const comment = await Comment.findAll({
+            where: {
+                blogId:req.params.blogId
+            },
+            order: [['updatedAt', 'DESC']]
+        })
+        res.send(comment)
+        } catch (err) {
+            res.status(500).send({
+                error: 'The comment information was incorrect'
+            })
+        }
+    },
+    // get comment by user id
+    async user (req, res) {
+        try {
+            const comment = await Comment.findAll({
+                where: {
+                    userId:req.params.userId
+                },
+                order: [['updatedAt', 'DESC']]
+            })
+            res.send(comment)
+        } catch (err) {
+            req.status(500).send({
+                error: 'The comment information was incorrect'
+            })
+        }
     }
 }
