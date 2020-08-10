@@ -135,5 +135,10 @@ module.exports = (app) => {
     app.get('/comment/user/:userId',
         CommentController.user
     )
+    // users
+    // get front
+    app.get('/users/front',
+        UserController.getFront
+    )
     
 }

@@ -15,4 +15,7 @@ export default {
     delete (user) {
         return Api().delete('user/'+user.id, user)
     },
+    getFront () {
+        return Api().get('users/front')
+    }
 }
