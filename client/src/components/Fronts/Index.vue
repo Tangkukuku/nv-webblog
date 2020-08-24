@@ -88,7 +88,7 @@
                     this.blogs = []
                     this.results = []
                     this.loading = true
-                    this.results = (await BlogsService.index(value)).data
+                    this.results = (await BlogsService.frontIndex(value)).data
                     this.appendResults()
                     this.results.forEach(blog => {
                         if (this.category.length > 0) {

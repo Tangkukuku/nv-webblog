@@ -9,7 +9,7 @@
             <form class="form-inline form-search">
                <div class="form-group">
                   <div class="input-group">
-                     <input type="text" v-model="search" class="form-control" id="exampleInputAmount" placeholder="Search">
+                     <!--<input type="text" v-model="search" class="form-control" id="exampleInputAmount" placeholder="Search">-->
                      <div class="input-group-addon"><i class="fas fa-search"></i></div>
                   </div>
                </div>
@@ -32,8 +32,11 @@
                   <p>
                      <button class="btn btn-sm btn-info"  v-on:click="navigateTo('/user/'+ user.id)">ดูข้อมูลผู้ใช้</button>
                      <button class="btn btn-sm btn-warning" v-on:click="navigateTo('/user/edit/'+ user.id)">แก้ไขข้อมูล</button>
-                     <button class="btn btn-sm btn-danger" v-on:click="deleteUser(user)">ลบข้อมูล</button>
-                     
+                     <button class="btn btn-sm btn-danger" v-on:click="deleteUser(user)">ลบข้อมูล</button>       
+                  </p>
+                  <p>
+                     <a class="btn btn-danger btn-sm" href="#" v-on:click.prevent="pauseUser(user.id)"><i class="fas fa-pause"></i>Pause</a>&nbsp;
+                     <a class="btn btn-success btn-sm" href="#" v-on:click.prevent="activeUser(user.id)"><i class="fas fa-check"></i>Active</a>&nbsp;
                   </p>
                </div>
                <div class="clearfix"></div>
@@ -72,8 +75,31 @@ import UsersService from '@/services/UsersService'
       async refreshData() {
          this.users = (await UsersService.index()).data
       },
+      async pauseUser (userId) {
+         let user = {
+            "id": userId,
+            "status":"pause"
+         }        
+         try {
+            await UsersService.put(user)
+            this.refreshData()
+         } catch (error) {
+            console.log(error)
+         }
+      },
+      async activeUser (userId) {
+         let user = {
+            "id": userId,
+            "status":"active"
+         }
+         try {
+            await UsersService.put(user)
+            this.refreshData()
+         } catch (error) {
+            console.log(error)
+         }
+      },
    }
-   
 }
 </script>
 <style scoped>

@@ -20,4 +20,11 @@ export default {
     delete (blog) {
         return Api().delete('blog/'+blog.id, blog)
     },
+    frontIndex (search) {
+        return Api().get('blogs/front', {
+            params: {
+                search: search
+            }
+        })
+    },
 }

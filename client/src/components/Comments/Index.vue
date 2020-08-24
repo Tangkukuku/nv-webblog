@@ -25,7 +25,7 @@
             <p>blog id: {{ comment.blogId }}</p>
             <p>comment: {{ comment.comment }}</p>
             <p>
-                <button class="btn btn-sm btn-info" v-on:click="navigateTo('/comment/'+ comment.id)">ดู comment</button>
+                <button class="btn btn-sm btn-info" v-on:click="navigateTo('/front/read/'+ comment.blogId)">ดูบล็อกที่ Comment</button> 
                 <button class="btn btn-sm btn-danger" v-on:click="deleteComment(comment)">ลบข้อมูล</button>
             </p>
         </div>

@@ -48,6 +48,10 @@
                     <button class="btn btn-sm btn-warning" v-on:click="navigateTo('/blog/edit/'+ blog.id)">Edit blog</button>
                     <button class="btn btn-sm btn-danger" v-on:click="deleteBlog(blog)">Delete</button>
                 </p>
+                <p>
+                    <a class="btn btn-danger btn-sm" href="#" v-on:click.prevent="suspend(blog.id)"><i class="fas fa-pause"></i> Suspend</a>&nbsp;
+                    <a class="btn btn-success btn-sm" href="#" v-on:click.prevent="publish(blog.id)"><i class="fas fa-check"></i> Published</a>&nbsp;
+                </p>
             </div>
             <div class="clearfix"></div>
             </div>
@@ -171,6 +175,30 @@ export default {
                 pageWatcher = null
             }
         },
+        async suspend (blogId) {
+            let user = {
+                "id": blogId,
+                "status":"saved"
+            }
+            try {
+                await BlogsService.put(user)
+                this.refreshData()
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async publish (blogId) {
+            let user = {
+                "id": blogId,
+                "status":"published"
+            }
+            try {
+                await BlogsService.put(user)
+                this.refreshData()
+            } catch (error) {
+                console.log(error)
+            }
+        }
     },
     
 }

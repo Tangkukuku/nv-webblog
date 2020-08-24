@@ -140,5 +140,8 @@ module.exports = (app) => {
     app.get('/users/front',
         UserController.getFront
     )
+    app.get('/blogs/front',
+        BlogController.frontIndex
+    )
     
 }
