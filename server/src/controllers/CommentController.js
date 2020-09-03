@@ -4,7 +4,27 @@ module.exports = {
     // get all comment
     async index (req, res) {
         try {
-            const comments = await Comment.findAll()
+            let comments = null
+            const search = req.query.search
+            // console.log('search key: ' + search)
+            if (search) {
+                comments = await Comment.findAll({
+                    where: {
+                        $or: [
+                            'blogId', 'comment', 'userId'
+                        ].map(key => ({
+                            [key]: {
+                                $like: `%${search}%`,
+                            }
+                        })),
+                    },
+                    order: [['createdAt', 'DESC']]
+                })
+            } else {
+                comments = await Comment.findAll({
+                    order: [['createdAt', 'DESC']]
+                })
+            }
             res.send(comments)
         } catch (err){
             res.status(500).send({

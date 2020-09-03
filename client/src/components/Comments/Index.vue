@@ -35,6 +35,48 @@
 <script>
 import CommentsService from '@/services/CommentsService'
 export default {
+    /*watch: {
+        search: _.debounce(async function (value) {
+            const route = {
+                name: 'comments'
+            }
+
+            if(this.search !== '') {
+                route.query = {
+                    search: this.search
+                }
+            }
+
+            console.log('search: ' + this.search)
+            this.$router.push(route)
+        }, 700),
+
+        '$route.query.search': {
+            immediate: true,
+            async handler (value) {
+                this.userId = []
+                this.blogId = []
+                this.loading = true 
+                this.results = (await CommentsService.index(value)).data
+                this.appendResults()
+
+                this.results.forEach(blog => {
+                    if (this.userId.length > 0) {
+                        // console.log(this.category.indexOf(blog.category))
+                        if(this.userId.indexOf(blog.userId) === -1) {
+                            this.userId.push(blog.userId)
+                        }
+                    } else {
+                        
+                        this.userId.push(blog.userId)
+                    }
+                    })
+                this.loading = false
+                this.search = value
+                //console.log(this.category) 
+            }
+        }
+    },*/
     data () {
         return {
             comments: []

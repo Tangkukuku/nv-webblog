@@ -1,7 +1,6 @@
 const {Blog} = require('../models')
 
 module.exports = {
-
     // indx with serach blog
     async index (req, res) {
         try {
@@ -19,11 +18,11 @@ module.exports = {
                             }
                         })),
                     },
-                    order: [['updatedAt', 'DESC']]
+                    order: [['createdAt', 'DESC']]
                 })
             } else {
                 blogs = await Blog.findAll({
-                    order: [['updatedAt', 'DESC']]
+                    order: [['createdAt', 'DESC']]
                 })
             }
                 res.send(blogs)

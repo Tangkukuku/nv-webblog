@@ -4,7 +4,26 @@ module.exports = {
     // get all user
     async index (req, res) {
         try {
-            const users = await User.findAll()
+            let users = null
+            const search = req.query.search
+            if (search) {
+                users = await User.findAll({
+                    where: {
+                        $or: [
+                            'name', 'lastname', 'email'
+                        ].map(key => ({
+                            [key]: {
+                                $like: `%${search}%`,
+                            }
+                        })),
+                    },
+                    order: [['createdAt', 'ASC']]
+                })
+            } else {
+                users = await User.findAll({
+                    order: [['createdAt', 'ASC']]
+                })
+            }
             res.send(users)
         } catch (err){
             res.status(500).send({

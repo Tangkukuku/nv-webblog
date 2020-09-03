@@ -72,6 +72,7 @@ module.exports = (app) => {
     )
     // get all blog
     app.get('/blogs',
+        isAuthenController,// ใช้เช็ค token
         BlogController.index
     )
     // comment route
@@ -93,6 +94,7 @@ module.exports = (app) => {
     )
     // get all comment
     app.get('/comments',
+        isAuthenController,// ใช้เช็ค token
         CommentController.index
     )
     app.post('/front/login',

@@ -29,6 +29,8 @@
                   <p>ชืEอ-นามสกุล: {{ user.name }} - {{ user.lastname }}</p>
                   <p>email: {{ user.email }}</p>
                   <p>password: {{ user.password }}</p>
+                  <p>ตำแหน่ง: {{ user.type }}</p>
+                  <p>สถานะ: {{ user.status }}</p>
                   <p>
                      <button class="btn btn-sm btn-info"  v-on:click="navigateTo('/user/'+ user.id)">ดูข้อมูลผู้ใช้</button>
                      <button class="btn btn-sm btn-warning" v-on:click="navigateTo('/user/edit/'+ user.id)">แก้ไขข้อมูล</button>

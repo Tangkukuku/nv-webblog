@@ -56,8 +56,9 @@
             <div class="clearfix"></div>
             </div>
         </transition-group>
-        <div v-if="blogs.length === 0 && loading === false" class="emptyblog">*** ไม่มีข้อมูล***</div>
+        
         <div id="blog-list-bottom">
+            <div class="emptyblog" v-if="blogs.length === 0 && loading === true" >*** ไม่มีข้อมูล***</div>
             <div class="blog-load-finished" v-if="blogs.length === results.length && results.length > 0">โหลดข้อมูลครบแล้ว</div>
         </div>
     </div>
@@ -278,5 +279,9 @@ export default {
         text-align: center;
         background: seagreen;
         color:white;
+    }
+    .emptyblog {
+        background-color: coral;
+        border-color: coral;
     }
 </style>
