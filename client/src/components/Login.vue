@@ -7,18 +7,25 @@
             <div class="login-wrapper">
               <h1>Login</h1>
               <form v-on:submit.prevent="onLogin" class="formhorizontal">
-                <div class="form-group">
+                <div class="form-group ">
                   <label for class="control-label col-md-3">Username:</label>
                   <div class="col-md-8">
                     <input type="text" v-model="email" class="formcontrol" />
                   </div>
                 </div>
+                <br>
+                <br>
+                <br>
+
                 <div class="form-group">
                   <label for class="control-label col-md-3">Password:</label>
                   <div class="col-md-8">
                     <input type="password" v-model="password" class="form-control" />
                   </div>
                 </div>
+                <br>
+                <br>
+
                 <div class="form-group">
                   <div class="col-md-offset-3 col-md-8">
                     <button class="btn btn-default" type="submit">
@@ -81,6 +88,7 @@ export default {
 .login-wrapper {
   /* border: solid 1px red; */
   width: 400px;
+  height: 270px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 80px;

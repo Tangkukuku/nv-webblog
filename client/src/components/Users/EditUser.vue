@@ -40,16 +40,36 @@
                     <input class="form-control center_div" type="text" v-model="user.password">
                 </th>
             </tr>
-        </table>
-        <br>
-
-            
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>status:</b></center>
+                </th>
+                <th class ="c">
+                    <input class="form-control center_div" type="text" v-model="user.status">
+                </th>
+            </tr>
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>type:</b></center>
+                </th>
+                <th class ="c">
+                    <input class="form-control center_div" type="text" v-model="user.type">
+                </th>
+            </tr>
+            </table>
+            <br>
                 <p>
                     <button class="btn btn-success btn-sm" type="submit">edit user</button>
                     <button class="btn btn-sm secondary" v-on:click="navigateTo('/users')">Back..</button>
                 </p>
             
         </form>
+        
+            
+        
+        
     </center>
     </div>
 </template>
@@ -77,7 +97,10 @@
                 } catch (err) {
                     console.log(err)
                 }
-            }
+            },
+            navigateTo (route) {
+                this.$router.push(route)
+            },
         },
         async created () {
             try {

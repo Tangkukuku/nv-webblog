@@ -9,7 +9,7 @@
             <form class="form-inline form-search">
                <div class="form-group">
                   <div class="input-group">
-                     <!--<input type="text" v-model="search" class="form-control" id="exampleInputAmount" placeholder="Search">-->
+                     <input type="text" v-model="search" class="form-control" id="exampleInputAmount" placeholder="Search">
                      <div class="input-group-addon"><i class="fas fa-search"></i></div>
                   </div>
                </div>
@@ -26,11 +26,12 @@
             <div v-for="user in users" v-bind:key="user.id" class="blog-list">
                <div class="blog-info">
                   <p>id: {{ user.id }}</p>
-                  <p>ชืEอ-นามสกุล: {{ user.name }} - {{ user.lastname }}</p>
+                  <p>ชื่อ-นามสกุล: {{ user.name }} - {{ user.lastname }}</p>
                   <p>email: {{ user.email }}</p>
                   <p>password: {{ user.password }}</p>
-                  <p>ตำแหน่ง: {{ user.type }}</p>
-                  <p>สถานะ: {{ user.status }}</p>
+                  <p>status: {{ user.status }}</p>
+                  <p>type: {{ user.type }}</p>
+
                   <p>
                      <button class="btn btn-sm btn-info"  v-on:click="navigateTo('/user/'+ user.id)">ดูข้อมูลผู้ใช้</button>
                      <button class="btn btn-sm btn-warning" v-on:click="navigateTo('/user/edit/'+ user.id)">แก้ไขข้อมูล</button>
@@ -52,13 +53,12 @@
 import UsersService from '@/services/UsersService'
 
  export default {
+
    data () {
       return {
-         users: []
+         users: [],
       }
    },
-   
-
    async created () {
       try {
          this.users = (await UsersService.index()).data

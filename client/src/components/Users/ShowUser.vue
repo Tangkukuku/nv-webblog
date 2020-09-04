@@ -39,6 +39,24 @@
                     <div class="form-control center_div" readonly> {{ user.password }}</div>
                 </th>
             </tr>
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>status:</b></center>
+                </th>
+                <th class ="c">
+                    <div class="form-control center_div" readonly> {{ user.status }}</div>
+                </th>
+            </tr>
+            <br>
+            <tr>
+                <th class="d">
+                    <center><b>type:</b></center>
+                </th>
+                <th class ="c">
+                    <div class="form-control center_div" readonly> {{ user.type }}</div>
+                </th>
+            </tr>
         </table>
         </center>
         <br>

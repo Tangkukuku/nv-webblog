@@ -58,6 +58,7 @@
         </transition-group>
         
         <div id="blog-list-bottom">
+            <div class="emptyblog" v-if="blogs.length === 0 && loading === false" >*** ไม่มีข้อมูล***</div>
             <div class="emptyblog" v-if="blogs.length === 0 && loading === true" >*** ไม่มีข้อมูล***</div>
             <div class="blog-load-finished" v-if="blogs.length === results.length && results.length > 0">โหลดข้อมูลครบแล้ว</div>
         </div>
