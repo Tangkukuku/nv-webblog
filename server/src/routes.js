@@ -2,6 +2,7 @@ const UserController = require('./controllers/UserController')
 const UserAuthenController = require('./controllers/UserAuthenController')
 const isAuthenController = require('./authen/isAuthenController') //ใช้เช็ค token
 const BlogController = require('./controllers/BlogController')
+const BookController = require('./controllers/BookController')
 const CommentController = require('./controllers/CommentController')
 let multer = require("multer")
 // upload section
@@ -146,4 +147,32 @@ module.exports = (app) => {
         BlogController.frontIndex
     )
     
+    // book route
+    // create book
+    app.post('/book',
+        isAuthenController,
+        BookController.create
+    )
+    // edit book, suspend, active
+    app.put('/book/:bookId',
+        isAuthenController,
+        BookController.put
+    )
+    // delete book
+    app.delete('/book/:bookId',
+        isAuthenController,
+        BookController.remove
+    )
+    // get book by id
+    app.get('/book/:bookId',
+        BookController.show
+    )
+    // get all book
+    app.get('/books',
+        isAuthenController,
+        BookController.index
+    )
+    app.get('/books/front',
+        BookController.frontIndex
+    )
 }
