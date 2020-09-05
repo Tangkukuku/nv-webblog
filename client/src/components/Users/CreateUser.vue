@@ -61,7 +61,7 @@
             </table>
             <br>
                 <p>
-                    <button class="btn btn-success btn-sm" type="submit">edit user</button>
+                    <button class="btn btn-success btn-sm" type="submit">Create user</button>
                     <button class="btn btn-sm secondary" v-on:click="navigateTo('/users')">Back..</button>
                 </p>
             
@@ -79,21 +79,22 @@ export default {
  data () {
     return {
         user: {
-        name: '',
-        lastname: '',
-        email: '',
-        password: '',
-        status: 'active'
+            name: '',
+            lastname: '',
+            email: '',
+            password: '',
+            status: 'active',
+            type: "admin",
         }
     }
  },
  methods: {
     async createUser () {
         try {
-        await UsersService.post(this.user)
+            await UsersService.post(this.user)
             this.$router.push({
-            name: 'users'
-        })
+                name: 'users'
+            })
         } catch (err) {
             console.log(err)
         }

@@ -15,8 +15,6 @@
                 </div>
                 <br>
                 <br>
-                <br>
-
                 <div class="form-group">
                   <label for class="control-label col-md-3">Password:</label>
                   <div class="col-md-8">
@@ -25,7 +23,6 @@
                 </div>
                 <br>
                 <br>
-
                 <div class="form-group">
                   <div class="col-md-offset-3 col-md-8">
                     <button class="btn btn-default" type="submit">

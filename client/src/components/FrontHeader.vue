@@ -22,7 +22,7 @@
               </router-link>
             </li>
             <li v-if="!isUserLoggedIn" role="presentation">
-              <a href="#" v-on:click.prevent="showLogin = true">Login</a>
+              <a href="#" v-on:click.prevent="showLogin = true ;showRegister=false">Login</a>
             </li>
             <transition name="fade">
               <li v-if="isUserLoggedIn" role="presentation">
@@ -33,7 +33,7 @@
               <a href="#" v-on:click.prevent="logout">Logout</a>
             </li>
             <li v-if="!isUserLoggedIn" role="presentation">
-              <a href="#" v-on:click.prevent="showRegister = true">Register</a>
+              <a href="#" v-on:click.prevent="showRegister = true ;showLogin = false">Register</a>
             </li>
           </ul>
         </div>
@@ -41,7 +41,7 @@
     </div>
     <div class="modal" v-if="showRegister">
       <transition name="fade">
-        <div class="login-wrapper">
+        <div class="login-wrapperr">
           <h3>Client Register</h3>
           <form v-on:submit.prevent="clientRegister" class="formhorizontal">
             <div class="form-group">
@@ -56,6 +56,7 @@
                 />
               </div>
             </div>
+
             <div class="form-group">
               <label class="control-label col-md-3">Password:</label>
               <div class="col-md-9">
@@ -67,7 +68,10 @@
                   class="form-control"
                 />
               </div>
+              <br>
             </div>
+
+
             <div class="form-group">
               <label class="control-label col-md-3">Name:</label>
               <div class="col-md-9">
@@ -80,6 +84,7 @@
                 />
               </div>
             </div>
+
             <div class="form-group">
               <label class="control-label col-md-3">Lastname:</label>
               <div class="col-md-9">
@@ -91,6 +96,11 @@
                   class="form-control"
                 />
               </div>
+              <br>
+              <br>
+              <br>
+              <br>
+
             </div>
             <div class="form-group">
               <div class="col-md-offset-3 col-md-9">
@@ -118,7 +128,7 @@
         <p>{{ resultUpdated }}</p>
       </div>
     </transition>
-    <div class="modal" v-if="showLogin">
+    <div class="modal" v-if="showLogin ">
       <transition name="fade">
         <div class="login-wrapper">
           <h3>Client Login</h3>
@@ -129,8 +139,10 @@
                 <input placeholder="email" type="email" v-model="email" class="form-control" />
               </div>
             </div>
+            <br>
+            <br>
             <div class="form-group">
-              <label class="control-label col-md-3">Password:</label>
+              <label class="control-label col-md-3">Password: &nbsp; &nbsp;   </label> 
               <div class="col-md-9">
                 <input
                   type="password"
@@ -140,6 +152,7 @@
                 />
               </div>
             </div>
+            <br>
             <div class="form-group">
               <div class="col-md-offset-3 col-md-9">
                 <button class="btn btn-success btn-sm" type="submit">
@@ -171,6 +184,7 @@
 <script>
 import { mapState } from "vuex";
 import AuthenService from "@/services/AuthenService";
+import UsersService from '@/services/UsersService'
 export default {
   data() {
     return {
@@ -301,7 +315,18 @@ export default {
 .login-wrapper {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   border: solid 1px #ddd;
-  width: 320px;
+  width: 360px;
+  height: 230px ;
+  padding: 10px 30px 20px 30px;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  /* padding: 20px; */
+}
+.login-wrapperr {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1px #ddd;
+  width: 360px;
+  height: 260px ;
   padding: 10px 30px 20px 30px;
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */

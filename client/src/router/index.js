@@ -18,6 +18,12 @@ import Upload from '@/components/Utils/Upload'
 // Front
 import FrontIndex from '@/components/Fronts/Index'
 import FrontShow from '@/components/Fronts/ShowBlog'
+
+// Books
+import BookIndex from '@/components/Books/Index'
+import BookCreate from '@/components/Books/CreateBook'
+import BookEdit from '@/components/Books/EditBook'
+import BookShow from '@/components/Books/ShowBook'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -91,6 +97,27 @@ export default new Router({
       path: '/front/read/:blogId',
       name: 'front-read',
       component: FrontShow
+    },
+    // books
+    {
+      path: '/books',
+      name: 'books',
+      component: BookIndex
+    },
+    {
+      path: '/book/create',
+      name: 'books-edit',
+      component: BookCreate
+    },
+    {
+      path: '/book/edit/:bookId',
+      name: 'book-edit',
+      component: BookEdit
+    },
+    {
+      path: '/book/:bookId',
+      name: 'book',
+      component: BookShow
     },
   ]
 })
