@@ -127,9 +127,9 @@ export default {
             loading: false,
         }
     },
-    /*async created () {
+    async created () {
         this.blogs = (await BlogsService.index()).data
-    },*/
+    },
     methods: {
         wait(ms) {
             return x => {
