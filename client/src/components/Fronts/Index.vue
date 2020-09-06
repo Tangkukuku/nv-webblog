@@ -160,7 +160,11 @@ export default {
       }
     },
     navigateTo(route) {
-      this.$router.push(route);
+      if (this.user == null) {
+        alert("Please, Register or Login before.\n\nThank you.");
+      }else{
+        this.$router.push(route);
+      }
     },
     async deleteBlog(blog) {
       try {
@@ -196,7 +200,7 @@ export default {
   mounted() {
     if (!this.isUserLoggedIn) {
       this.$router.push({
-        name: "login",
+        name: "front",
       });
     }
   },

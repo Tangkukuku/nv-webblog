@@ -92,6 +92,13 @@ export default {
     this.transections = (await BuysService.user(this.user.id)).data;
     console.log(this.transections);
   },
+  mounted() {
+    if (!this.isUserLoggedIn) {
+      this.$router.push({
+        name: "front",
+      });
+    }
+  },
   methods: {
     async sendPaid(id) {
       let transection = {

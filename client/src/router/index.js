@@ -19,6 +19,7 @@ import Upload from '@/components/Utils/Upload'
 import FrontIndex from '@/components/Fronts/Index'
 import FrontShow from '@/components/Fronts/ShowBlog'
 import FrontBooks from '@/components/Fronts/Books'
+import FrontshowBooks from '@/components/Fronts/showBook'
 import FrontCartlist from '@/components/Fronts/Cartlist'
 
 // Books
@@ -105,6 +106,11 @@ export default new Router({
       path: '/front-cartlist',
       name: 'cartlist',
       component: FrontCartlist
+    },
+    {
+      path: '/front-view-book/:bookId',
+      name: 'front-view-book',
+      component: FrontshowBooks
     },
     {
       path: '/front/read/:blogId',
