@@ -4,7 +4,7 @@
         <main-header navsel="back"></main-header>
         <div class="book-header">
             <br><br>
-            <h2>ส่วนจดัการบล็อก</h2>
+            <h2>ส่วนจัดการหนังสือ</h2>
             <div>
                 <form class="form-inline form-search">
                     <div class="form-group">

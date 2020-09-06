@@ -36,7 +36,7 @@
           </div>
           <ul class="categories">
             <li v-for="cate in category" v-bind:key="cate.index">
-              <a von:click.prevent="setCategory(cate)" href="#">{{ cate }}</a>
+              <a v-on:click.prevent="setCategory(cate)" href="#">{{ cate }}</a>
             </li>
             <li class="clear">
               <a v-on:click.prevent="setCategory(' ')" href="#">Clear</a>

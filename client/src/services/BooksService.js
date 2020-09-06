@@ -7,13 +7,6 @@ export default {
             }
         })
     },
-    frontIndex(search) {
-        return Api().get('books/front', {
-            params: {
-                search: search
-            }
-        })
-    },
     show(bookId) {
         return Api().get('book/' + bookId)
     },
@@ -25,5 +18,12 @@ export default {
     },
     delete(book) {
         return Api().delete('book/' + book.id, book)
+    },
+    frontIndex(search) {
+        return Api().get('books/front', {
+            params: {
+                search: search
+            }
+        })
     },
 }

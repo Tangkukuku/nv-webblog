@@ -4,6 +4,7 @@ const isAuthenController = require('./authen/isAuthenController') //ใช้เ
 const BlogController = require('./controllers/BlogController')
 const BookController = require('./controllers/BookController')
 const CommentController = require('./controllers/CommentController')
+const BuyController = require('./controllers/BuyController')
 let multer = require("multer")
 // upload section
 let storage = multer.diskStorage({
@@ -73,7 +74,7 @@ module.exports = (app) => {
     )
     // get all blog
     app.get('/blogs',
-        isAuthenController,// ใช้เช็ค token
+        //isAuthenController,// ใช้เช็ค token
         BlogController.index
     )
     // comment route
@@ -175,4 +176,26 @@ module.exports = (app) => {
     app.get('/books/front',
         BookController.frontIndex
     )
+
+    // buy route
+    // create buy
+    app.post('/buy',
+        isAuthenController,
+        BuyController.create
+    )
+    // edit buy, suspend, active
+    app.put('/buy/:buyId',
+        isAuthenController,
+        BuyController.put
+    )
+    // get all buy
+    app.get('/buys',
+        isAuthenController,
+        BuyController.index
+    )
+    app.get('/buy/:userId',
+        isAuthenController,
+        BuyController.user
+    )
+
 }

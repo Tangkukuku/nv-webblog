@@ -40,7 +40,9 @@
             <p><vue-ckeditor v-model.lazy="blog.content" :config="config" @blur="onBlur($event)" @focus="onFocus($event)" /></p>
             <p><strong>category:</strong> <input class="form-control" type="text" v-model="blog.category"></p>
             <p><strong>status:</strong> <input class="form-control" type="text" v-model="blog.status"></p>
-            <p class="create-blog"><button class="btn btn-success btn-sm" type="submit">create blog</button></p>
+            <p class="create-blog"><button class="btn btn-success btn-sm" type="submit">create blog</button>
+            <button class="btn btn-sm secondary" v-on:click="navigateTo('/blogs')">กลับ</button>
+            </p>
         </form>
     </div>
 </template>
@@ -61,7 +63,7 @@ import UploadService from '@/services/UploadService'
                     pictures: 'null',
                     content: '',
                     category: '',
-                    status: ''
+                    status: 'published'
                 },
                 config: {
                     toolbar: [
@@ -81,6 +83,15 @@ import UploadService from '@/services/UploadService'
             }
         },
         methods: {
+            navigateTo (route) {
+                this.$router.push(route)
+            },
+            onBlur (editor) {
+            console.log(editor);
+            },
+            onFocus (editor) {
+                console.log(editor);
+            },
             async editBlog () {
                 try {
                     await BlogsService.put(this.blog)
@@ -202,117 +213,112 @@ import UploadService from '@/services/UploadService'
             }
         },
         created () {
-        this.reset()
-        this.config.toolbar = [
-            {
-            name: "document",
-                items: [
-                    "Source",
-                    "-",
-                    "Save",
-                    "NewPage",
-                    "Preview",
-                    "Print",
-                    "-",
-                    "Templates"
-                ]
-            },
-            {
-                name: "clipboard",
-                items: [
-                    "Cut",
-                    "Copy",
-                    "Paste",
-                    "PasteText",
-                    "PasteFromWord",
-                    "-",
-                    "Undo",
-                    "Redo"
-                ]
-            },
-            {
-                name: "editing",
-                items: ["Find", "Replace", "-", "SelectAll", "-", "Scayt"]
-            },
-            {
-                name: "forms",
-                items: [
-                    "Form",
-                    "Checkbox",
-                    "Radio",
-                    "TextField",
-                    "Textarea",
-                    "Select",
-                    "Button",
-                    "ImageButton",
-                    "HiddenField"
-                ]
-            },
-            "/",
-            {
-                name: "basicstyles",
-                items: [
-                    "Bold",
-                    "Italic",
-                    "Underline",
-                    "Strike",
-                    "Subscript",
-                    "Superscript",
-                    "-",
-                    "CopyFormatting",
-                    "RemoveFormat"
-                ]
-            },
-            {
-                name: "paragraph",
-                items: [
-                    "NumberedList",
-                    "BulletedList",
-                    "-",
-                    "Outdent",
-                    "Indent",
-                    "-",
-                    "Blockquote",
-                    "CreateDiv",
-                    "-",
-                    "JustifyLeft",
-                    "JustifyCenter",
-                    "JustifyRight",
-                    "JustifyBlock",
-                    "-",
-                    "BidiLtr",
-                    "BidiRtl",
-                    "Language"
-                ]
-            },
-            { name: "links", items: ["Link", "Unlink", "Anchor"] },
-            {
-                name: "insert",
-                items: [
-                    "Image",
-                    "Flash",
-                    "Table",
-                    "HorizontalRule",
-                    "Smiley",
-                    "SpecialChar",
-                    "PageBreak",
-                    "Iframe",
-                    "InsertPre"
-                ]
-            },
-            "/",
-            { name: "styles", items: ["Styles", "Format", "Font", "FontSize"]},
-            { name: "colors", items: ["TextColor", "BGColor"] },
-            { name: "tools", items: ["Maximize", "ShowBlocks"] },
-            { name: "about", items: ["About"] }
-        ]
+            this.reset()
+            this.config.toolbar = [
+                {
+                name: "document",
+                    items: [
+                        "Source",
+                        "-",
+                        "Save",
+                        "NewPage",
+                        "Preview",
+                        "Print",
+                        "-",
+                        "Templates"
+                    ]
+                },
+                {
+                    name: "clipboard",
+                    items: [
+                        "Cut",
+                        "Copy",
+                        "Paste",
+                        "PasteText",
+                        "PasteFromWord",
+                        "-",
+                        "Undo",
+                        "Redo"
+                    ]
+                },
+                {
+                    name: "editing",
+                    items: ["Find", "Replace", "-", "SelectAll", "-", "Scayt"]
+                },
+                {
+                    name: "forms",
+                    items: [
+                        "Form",
+                        "Checkbox",
+                        "Radio",
+                        "TextField",
+                        "Textarea",
+                        "Select",
+                        "Button",
+                        "ImageButton",
+                        "HiddenField"
+                    ]
+                },
+                "/",
+                {
+                    name: "basicstyles",
+                    items: [
+                        "Bold",
+                        "Italic",
+                        "Underline",
+                        "Strike",
+                        "Subscript",
+                        "Superscript",
+                        "-",
+                        "CopyFormatting",
+                        "RemoveFormat"
+                    ]
+                },
+                {
+                    name: "paragraph",
+                    items: [
+                        "NumberedList",
+                        "BulletedList",
+                        "-",
+                        "Outdent",
+                        "Indent",
+                        "-",
+                        "Blockquote",
+                        "CreateDiv",
+                        "-",
+                        "JustifyLeft",
+                        "JustifyCenter",
+                        "JustifyRight",
+                        "JustifyBlock",
+                        "-",
+                        "BidiLtr",
+                        "BidiRtl",
+                        "Language"
+                    ]
+                },
+                { name: "links", items: ["Link", "Unlink", "Anchor"] },
+                {
+                    name: "insert",
+                    items: [
+                        "Image",
+                        "Flash",
+                        "Table",
+                        "HorizontalRule",
+                        "Smiley",
+                        "SpecialChar",
+                        "PageBreak",
+                        "Iframe",
+                        "InsertPre"
+                    ]
+                },
+                "/",
+                { name: "styles", items: ["Styles", "Format", "Font", "FontSize"]},
+                { name: "colors", items: ["TextColor", "BGColor"] },
+                { name: "tools", items: ["Maximize", "ShowBlocks"] },
+                { name: "about", items: ["About"] }
+            ]
         },
-        onBlur (editor) {
-            console.log(editor);
-        },
-        onFocus (editor) {
-            console.log(editor);
-        },
+        /**/
     }
 </script>
 <style scoped>

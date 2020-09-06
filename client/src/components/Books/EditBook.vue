@@ -86,6 +86,15 @@
             }
         },
         methods: {
+            navigateTo (route) {
+                this.$router.push(route)
+            },
+            onBlur (editor) {
+            console.log(editor);
+            },
+            onFocus (editor) {
+                console.log(editor);
+            },
             async editBook () {
                 try {
                     await BooksService.put(this.book)

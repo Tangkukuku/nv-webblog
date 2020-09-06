@@ -21,12 +21,22 @@
                 <i class="fas fa-home"></i> Home
               </router-link>
             </li>
+            <li role="presentation">
+              <router-link :to="{name: 'front-books'}">
+                <i class="fas fa-book-open"></i> books
+              </router-link>
+            </li>
+            <li role="presentation">
+              <router-link :to="{name: 'cartlist'}">
+                <i class="fas fa-user"></i> user
+              </router-link>
+            </li>
             <li v-if="!isUserLoggedIn" role="presentation">
               <a href="#" v-on:click.prevent="showLogin = true ;showRegister=false">Login</a>
             </li>
             <transition name="fade">
               <li v-if="isUserLoggedIn" role="presentation">
-                <router-link v-bind:to="{name: 'login'}">{{user.name}}</router-link>
+                <router-link v-bind:to="{name: 'front'}">{{user.name}}</router-link>
               </li>
             </transition>
             <li v-if="isUserLoggedIn" role="presentation">

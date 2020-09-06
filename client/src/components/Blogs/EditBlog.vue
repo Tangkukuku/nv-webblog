@@ -84,6 +84,15 @@
             }
         },
         methods: {
+            navigateTo (route) {
+                this.$router.push(route)
+            },
+            onBlur (editor) {
+            console.log(editor);
+            },
+            onFocus (editor) {
+                console.log(editor);
+            },
             async editBlog () {
                 try {
                     await BlogsService.put(this.blog)
@@ -310,12 +319,7 @@
             { name: "about", items: ["About"] }
         ]
         },
-        onBlur (editor) {
-            console.log(editor);
-        },
-        onFocus (editor) {
-            console.log(editor);
-        },
+        
         async mounted () {
             try {
                 let blogId = this.$route.params.blogId

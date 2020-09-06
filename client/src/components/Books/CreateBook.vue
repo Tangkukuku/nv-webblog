@@ -41,7 +41,9 @@
             <p><strong>category:</strong> <input class="form-control" type="text" v-model="book.category"></p>
             <p><strong>status:</strong> <input class="form-control" type="text" v-model="book.status"></p>
             <p><label class="control-label">Prices :</label><input type="text" v-model="book.prices" class="form-control"></p>
-            <p class="create-book"><button class="btn btn-success btn-sm" type="submit">create book</button></p>
+            <p class="create-book"><button class="btn btn-success btn-sm" type="submit">create book</button>
+            <button class="btn btn-sm secondary" v-on:click="navigateTo('/books')">กลับ</button>
+            </p>
         </form>
     </div>
 </template>
@@ -62,7 +64,7 @@ import UploadService from '@/services/UploadService'
                     pictures: 'null',
                     content: '',
                     category: '',
-                    status: '',
+                    status: 'published',
                     prices: ''
                 },
                 config: {
@@ -83,6 +85,15 @@ import UploadService from '@/services/UploadService'
             }
         },
         methods: {
+            navigateTo (route) {
+                this.$router.push(route)
+            },
+            onBlur (editor) {
+            console.log(editor);
+            },
+            onFocus (editor) {
+                console.log(editor);
+            },
             async editBook () {
                 try {
                     await BooksService.put(this.book)
