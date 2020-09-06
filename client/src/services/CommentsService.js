@@ -1,7 +1,11 @@
 import Api from '@/services/Api'
 export default {
-    index () {
-        return Api().get('comments')
+    index(search) {
+        return Api().get('comments', {
+            params: {
+                search: search
+            }
+        })
     },
     show (commentId) {
         return Api().get('comment/'+commentId)
