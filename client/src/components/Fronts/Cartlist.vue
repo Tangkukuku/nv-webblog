@@ -94,6 +94,7 @@ export default {
   },
   mounted() {
     if (!this.isUserLoggedIn) {
+      alert("Please, Register or Login before.\n\nThank you.");
       this.$router.push({
         name: "front",
       });

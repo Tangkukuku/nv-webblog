@@ -217,7 +217,7 @@ export default {
   mounted() {
     if (!this.isUserLoggedIn) {
         this.$router.push({
-            name: "login",
+            name: "front",
         });
     }
   },
