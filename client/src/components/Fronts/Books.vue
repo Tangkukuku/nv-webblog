@@ -16,7 +16,7 @@
                 <img class="img-responsive" :src="BASE_URL+book.thumbnail" alt="thumbnail" />
               </div>
               <h4>{{ book.title }}</h4>
-              <div v-html="book.content.slice(0,200) + '...'"></div>
+              <div v-html="book.content.slice(0,60) + '...'"></div>
               <p>
                 <strong>ราคา:</strong>
                 {{ book.prices | getNumberWithCommas

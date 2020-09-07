@@ -43,19 +43,13 @@
             <br>
             <tr>
                 <th class="d">
-                    <center><b>status:</b></center>
-                </th>
-                <th class ="c">
-                    <input class="form-control center_div" type="text" v-model="user.status">
-                </th>
-            </tr>
-            <br>
-            <tr>
-                <th class="d">
                     <center><b>type:</b></center>
                 </th>
                 <th class ="c">
-                    <input class="form-control center_div" type="text" v-model="user.type">
+                    <select class="form-control" v-model="user.type">
+                        <option value="admin">Admin</option>
+                        <option value="user" >User</option>
+                    </select>
                 </th>
             </tr>
             </table>

@@ -29,7 +29,7 @@
       </div>
     </div>
     <!-- cart info -->
-    <div class="cart-info container">
+    <div v-if="transections.length" class="cart-info container">
       <div class="rows">
         <div class="col-md-12">
           <div class="transection-wrapper">
@@ -46,8 +46,7 @@
                   {{ transection.clientStatus}}
                 </p>
                 <p>
-                  <button
-                    v-on:click.prevent="sendPaid(transection.id)" class="btn btnxs btn-success">ยืนยันการชําระเงิน</button>
+                  <button v-on:click.prevent="sendPaid(transection.id)" class="btn btnxs btn-success">ยืนยันการชําระเงิน</button>
                 </p>
                 <p>
                   <strong>สถานะร้านค้า :</strong>
@@ -62,6 +61,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div v-else class="container">
+      <div class="trasection-null">ไม่มีรายการสั่งซื้อขณะนี้</div>
     </div>
   </div>
 </template>
@@ -136,5 +138,12 @@ export default {
 }
 .cart-info {
   margin-top: 50px;
+}
+.trasection-null {
+  border: solid 1px #dfdfdf;
+  margin-bottom: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
 }
 </style>
