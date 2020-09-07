@@ -78,7 +78,7 @@
             <div class="clearfix"></div>
           </div>
         </transition-group>
-        <div v-if="blogs.length === 0 && loading === false" class="emptyblog">*** ไม่มีขอ้ มูล***</div>
+        <div  v-if="blogs.length === 0 && loading === false" class="empty-blog">*** ไม่มีข้อมูล***</div>
         <div id="blog-list-bottom">
           <div
             class="blog-load-finished"
@@ -162,7 +162,7 @@ export default {
     navigateTo(route) {
       if (this.user == null) {
         alert("Please, Register or Login before.\n\nThank you.");
-      }else{
+      } else {
         this.$router.push(route);
       }
     },
@@ -269,8 +269,10 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-#blog-list-bottom {
-  padding-top: 4px;
+#book-list-bottom {
+  padding: 4px;
+  text-align: center;
+  color: white;
 }
 .blog-load-finished {
   padding: 4px;
@@ -305,5 +307,18 @@ export default {
   .logo {
     width: 120px;
   }
+}
+.emptyblog {
+  background-color: coral;
+  border-color: coral;
+}
+.empty-blog {
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+  background: coral;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

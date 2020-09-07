@@ -132,12 +132,9 @@
           </div>
           
         </transition-group>
-        <div v-if="books.length === 0 && loading === false" class="emptybook">*** ไม่มีขอ้ มูล***</div>
+        <div v-if="books.length === 0 && loading === false" class="empty-book">*** ไม่มีข้อมูล***</div>
         <div id="book-list-bottom">
-          <div
-            class="book-load-finished"
-            v-if="books.length === results.length && results.length > 0"
-          >โหลดข้อมูลครบแล้ว</div>
+          <div class="book-load-finished" v-if="books.length === results.length && results.length > 0">โหลดข้อมูลครบแล้ว</div>
         </div>
       </div>
     </div>
@@ -460,5 +457,14 @@ export default {
   font-family: kanit;
   padding-bottom: 20px;
   margin-top: 30px;
+}
+.empty-book {
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+  background: coral;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
