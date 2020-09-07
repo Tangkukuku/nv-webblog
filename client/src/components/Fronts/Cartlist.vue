@@ -16,7 +16,7 @@
           <div class="form-group">
             <label for class="control-label col-md-2">Lastname:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" v-model="user.name" disabled />
+              <input class="form-control" type="text" v-model="user.lastname" disabled />
             </div>
           </div>
           <div class="form-group">
@@ -47,9 +47,7 @@
                 </p>
                 <p>
                   <button
-                    v-on:click.prevent="sendPaid(transection.id)"
-                    class="btn btnxs btn-success"
-                  >ยืนยันการชําระเงิน</button>
+                    v-on:click.prevent="sendPaid(transection.id)" class="btn btnxs btn-success">ยืนยันการชําระเงิน</button>
                 </p>
                 <p>
                   <strong>สถานะร้านค้า :</strong>
@@ -94,6 +92,7 @@ export default {
   },
   mounted() {
     if (!this.isUserLoggedIn) {
+      
       alert("Please, Register or Login before.\n\nThank you.");
       this.$router.push({
         name: "front",

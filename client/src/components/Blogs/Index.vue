@@ -4,7 +4,7 @@
     <div class="blog-header">
       <br />
       <br />
-      <h2>ส่วนจัดการบล็อก</h2>
+      <h2>ส่วนจัดการ Blogs</h2>
       <div>
         <form class="form-inline form-search">
           <div class="form-group">
@@ -68,10 +68,7 @@
           <!-- <p>status: {{ blog.status }}</p> -->
           <p>
             <button class="btn btn-sm btn-info" v-on:click="navigateTo('/blog/'+ blog.id)">View Blog</button>
-            <button
-              class="btn btn-sm btn-warning"
-              v-on:click="navigateTo('/blog/edit/'+ blog.id)"
-            >Edit blog</button>
+            <button class="btn btn-sm btn-warning" v-on:click="navigateTo('/blog/edit/'+ blog.id)">Edit blog</button>
             <button class="btn btn-sm btn-danger" v-on:click="deleteBlog(blog)">Delete</button>
           </p>
           <p>
@@ -90,10 +87,7 @@
     <div id="blog-list-bottom">
       <div class="empty-blog" v-if="blogs.length === 0 && loading === false">*** ไม่มีข้อมูล***</div>
       <div class="empty-blog" v-if="blogs.length === 0 && loading === true">*** ไม่มีข้อมูล***</div>
-      <div
-        class="blog-load-finished"
-        v-if="blogs.length === results.length && results.length > 0"
-      >โหลดข้อมูลครบแล้ว</div>
+      <div class="blog-load-finished" v-if="blogs.length === results.length && results.length > 0" >โหลดข้อมูลครบแล้ว</div>
     </div>
   </div>
 </template>

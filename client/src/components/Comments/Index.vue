@@ -3,7 +3,7 @@
         <main-header navsel="back"></main-header>
         <div class="blog-header">
             <br><br><br>
-            <h2>Get all comments</h2>
+            <h2>ส่วนจัดการ Comments</h2>
             
             <div>
                 <form class="form-inline form-search">
@@ -25,11 +25,15 @@
             <p>blog id: {{ comment.blogId }}</p>
             <p>comment: {{ comment.comment }}</p>
             <p>
-                <button class="btn btn-sm btn-info" v-on:click="navigateTo('/front/read/'+ comment.blogId)">ดูบล็อกที่ Comment</button> 
+                <button class="btn btn-sm btn-info" v-on:click="navigateTo('/blog/'+ comment.blogId)">ดูบล็อกที่ Comment</button> 
                 <button class="btn btn-sm btn-danger" v-on:click="deleteComment(comment)">ลบข้อมูล</button>
             </p>
         </div>
-        
+        <div id="blog-list-bottom">
+            <div class="empty-blog" v-if="comments.length === 0 && loading === false">*** ไม่มีข้อมูล***</div>
+            <div class="empty-blog" v-if="comments.length === 0 && loading === true">*** ไม่มีข้อมูล***</div>
+            <div class="blog-load-finished" v-if="comments.length === results.length && results.length > 0" >โหลดข้อมูลครบแล้ว</div>
+        </div>
     </div>
 </template>
 <script>
@@ -52,7 +56,9 @@ export default {
     "$route.query.search": {
       immediate: true,
       async handler(value) {
+        this.loading = true;
         this.comments = (await CommentsService.index(value)).data;
+        this.results = this.comments
       },
     },
   },
@@ -60,6 +66,8 @@ export default {
         return {
             comments: [],
             search: "",
+            results: [],
+            loading: false,
         }
     },
     async created () {
@@ -84,13 +92,14 @@ export default {
 }
 </script>
 <style scoped>
-    .empty-blog {
-        width: 100%;
-        text-align: center;
-        padding:10px;
-        background:darksalmon;
-        color:white;
-    }
+.empty-blog {
+
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+  background: coral;
+  color: white;
+}
     /* thumbnail */
     .thumbnail-pic img{
         width: 200px;
@@ -124,12 +133,12 @@ export default {
         padding-top:4px;
     }
 
-    #blog-list-bottom{
-        padding:4px;
-        text-align: center;
-        background: seagreen;
-        color:white;
-    }
+#blog-list-bottom {
+  padding: 10px;
+  text-align: center;
+  /*background: seagreen;*/
+  color: white;
+}
     .categories {
         margin-top: 10px;
         padding: 0;
@@ -153,10 +162,10 @@ export default {
         background: tomato;
         color: white
     }
-    .blog-load-finished{
-        padding:4px;
-        text-align: center;
-        background: seagreen;
-        color:white;
-    }
+    .blog-load-finished {
+  padding: 4px;
+  text-align: center;
+  background: seagreen;
+  color: white;
+}
 </style>

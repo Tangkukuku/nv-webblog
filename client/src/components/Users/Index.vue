@@ -5,7 +5,7 @@
       <br />
       <br />
       <br />
-      <h2>Get all users</h2>
+      <h2>ส่วนจัดการ Users</h2>
       <div>
         <form class="form-inline form-search">
           <div class="form-group">
@@ -71,6 +71,11 @@
         <div class="clearfix"></div>
       </div>
     </transition-group>
+    <div id="blog-list-bottom">
+      <div class="empty-blog" v-if="users.length === 0 && loading === false">*** ไม่มีข้อมูล***</div>
+      <div class="empty-blog" v-if="users.length === 0 && loading === true">*** ไม่มีข้อมูล***</div>
+      <div class="blog-load-finished" v-if="users.length === results.length && results.length > 0" >โหลดข้อมูลครบแล้ว</div>
+    </div>
   </div>
 </template>
 <script>
@@ -93,7 +98,9 @@ export default {
     "$route.query.search": {
       immediate: true,
       async handler(value) {
+        this.loading = true;
         this.users = (await UsersService.index(value)).data;
+        this.results = this.users
       },
     },
   },
@@ -101,6 +108,8 @@ export default {
     return {
       users: [],
       search: "",
+      results: [],
+      loading: false
     };
   },
   async created() {
@@ -150,10 +159,11 @@ export default {
 </script>
 <style scoped>
 .empty-blog {
+
   width: 100%;
   text-align: center;
-  padding: 10px;
-  background: darksalmon;
+  padding: 4px;
+  background: coral;
   color: white;
 }
 /* thumbnail */
@@ -190,9 +200,9 @@ export default {
 }
 
 #blog-list-bottom {
-  padding: 4px;
+  padding: 10px;
   text-align: center;
-  background: seagreen;
+  /*background: seagreen;*/
   color: white;
 }
 .categories {

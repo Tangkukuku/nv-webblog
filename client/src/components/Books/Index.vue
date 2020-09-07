@@ -4,7 +4,7 @@
     <div class="book-header">
       <br />
       <br />
-      <h2>ส่วนจัดการหนังสือ</h2>
+      <h2>ส่วนจัดการ Books</h2>
       <div>
         <form class="form-inline form-search">
           <div class="form-group">

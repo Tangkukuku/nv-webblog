@@ -11,7 +11,7 @@ module.exports = {
                 comments = await Comment.findAll({
                     where: {
                         $or: [
-                            'blogId', 'comment', 'userId'
+                            'id', 'blogid', 'comment'
                         ].map(key => ({
                             [key]: {
                                 $like: `%${search}%`,

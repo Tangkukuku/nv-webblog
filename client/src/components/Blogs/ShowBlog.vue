@@ -1,117 +1,103 @@
 <template>
- <div>
-     <main-header navsel="back"></main-header>
-     <br><br><br><br><br><br>
-    <div class="blog-list">
-        <center><H1>{{ blog.title }}</H1></center>
-        <strong> <p>category: {{ blog.category }}</p></strong> 
-        <strong> <p>status: {{ blog.status }}</p></strong> 
-        <p>content: {{ blog.content }}</p>
-        <p>
-            <button class="btn btn-sm btn-warning" v-on:click="navigateTo('/blog/edit/'+ blog.id)">แกไข้ blog</button>
-            <button class="btn btn-sm btn-info" v-on:click="navigateTo('/blogs')">กลับ</button>
+    <div class="component-wrapper container">
+        <main-header navsel="back"></main-header>
+        <br><br>
+        <div v-if="blog" >
+            <div class="blog-wrapper" v-if="blog != null">
+                <h1>{{ blog.title }}</h1>
+                <p><strong>Category: </strong> 
+                <a href="#" v-on:click.prevent="navigateTo(`/blogs?search=${blog.category}`)">{{blog.category }}</a></p>
+                <p>
+          <strong>status:</strong> {{blog.status}}
         </p>
+                <div class="content" v-html="blog.content"></div>
+                <!-- <p>category: {{ blog.category }}</p>
+                <p>status: {{ blog.status }}</p> -->
+            </div>
+            <div class="back-nav"><button class="btn btn-success" v-on:click="navigateTo('/blogs')"><i class="fas fa-arrow-left"></i> Back..</button></div>
+            <comment-comp v-bind:blogid="blog.id" v-bind:user="user"></comment-comp>
+            <transition name="fade">
+                <div v-if="resultUpdated != ''" class="popup-msg">
+                    <p>{{ resultUpdated }}</p>
+                </div>
+            </transition>
+            <br>
+        </div>
     </div>
-    
- </div>
 </template>
 <script>
-import BlogsService from '@/services/BlogsService'
-export default {
-    data () {
-        return {
-            blog: null
-        }
-    },
-    async created () {
-    try {
-        let blogId = this.$route.params.blogId
-        this.blog = (await BlogsService.show(blogId)).data
-    } catch (error) {
-        console.log (error)
-    }
-    },
-    methods : {
-        navigateTo (route) {
-            this.$router.push(route)
+    import {mapState} from 'vuex'
+    import BlogsService from '@/services/BlogsService'
+    import UsersService from '@/services/UsersService'
+    import CommentComp from '@/components/Fronts/Comment'
+
+    export default {
+        data () {
+            return {
+                blog: null,
+                resultUpdated: '',
+                users:null,
+            }
         },
+        components : {
+            CommentComp
+        },
+        async created () {
+            // get blog
+            // check permission first
+            try {
+                let blogId = this.$route.params.blogId
+                this.blog = (await BlogsService.show(blogId)).data
+            } catch (error) {
+                console.log (error)
+            }
+            },
+            methods: {
+                navigateTo (route) {
+                this.$router.push(route)
+                }
+            },
+            computed: {
+                ...mapState([
+                    'isUserLoggedIn',
+                    'user'
+                ])
+            }
     }
-}
 </script>
 <style scoped>
-    .empty-blog {
-        width: 100%;
-        text-align: center;
-        padding:10px;
-        background:darksalmon;
+    .hero {
+        margin-top: 80px;
+        border-radius: 5px;
+        background: darkcyan;
+        height:250px;
         color:white;
+        padding: 20px;
     }
-    /* thumbnail */
-    .thumbnail-pic img{
-        width: 200px;
-        padding: 5px 10px 0px 0px;
+    .hero h1 {
+        margin-top: 30px;
     }
-    .blog-info {
-        float: left;
+    .blog-wrapper {
+        margin-top:20px;
+        padding: 40px;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     }
-    .blog-pic {
-        float: left;
-    }
-    .clearfix {
-        clear: both;
-    }
-    .blog-list {
-        border:solid 1px #dfdfdf;
-        margin-bottom: 10px;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 5px;
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
-    }
-    .blog-header {
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #blog-list-bottom{
-        padding-top:4px;
-    }
-
-    #blog-list-bottom{
-        padding:4px;
+    .back-nav {
+        margin-top: 20px;
         text-align: center;
-        background: seagreen;
-        color:white;
     }
-    .categories {
-        margin-top: 10px;
-        padding: 0;
-        list-style: none;
-        float: left;
-    }
-    .categories li {
-        float: left;
-        padding: 2px;
-    }
-    .categories li a {
-        padding: 5px 10px 5px 10px;
-        background:paleturquoise;
-        color: black;
-        text-decoration: none;
-    }
-    .create-blog {
-        margin-top: 10px;
-    }
-    .categories li.clear a {
-        background: tomato;
-        color: white
-    }
-    .blog-load-finished{
-        padding:4px;
+    .blog-wrapper h1{
         text-align: center;
-        background: seagreen;
-        color:white;
+        font-family: 'kanit';
+        padding-bottom: 50px;
+    }
+    .blog-wrapper p {
+        font-family: 'kanit';
+        font-size: 1.4em;
+        padding-bottom:20px;
+    }
+    .blog-wrapper .content {
+        font-family: 'kanit';
+        font-size: 1.2em;
     }
 </style>

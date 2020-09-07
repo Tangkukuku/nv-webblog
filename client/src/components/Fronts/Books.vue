@@ -27,9 +27,7 @@
                 <button v-on:click.prevent="addCart(book)" class="btn btnsm btn-danger">
                   <i class="fas fa-shopping-cart"></i> เพิ่มลงตระกร้า
                 </button>
-                <button
-                  class="btn btn-sm btn-info"
-                  v-on:click="navigateTo('/front-view-book/'+ book.id)">
+                <button class="btn btn-sm btn-info" v-on:click="navigateTo('/front-view-book/'+ book.id)">
                   <i class="fab fareadme"></i> อ่านเพิ่ม
                 </button>
                 
@@ -245,7 +243,11 @@ export default {
       }
     },
     navigateTo(route) {
-      this.$router.push(route);
+      if (this.user == null) {
+        alert("Please, Register or Login before.\n\nThank you.");
+      } else {
+        this.$router.push(route);
+      }
     },
     async deleteBook(book) {
       try {
@@ -311,13 +313,13 @@ export default {
       pageWatcher = null;
     }
   },
-  mounted() {
+  /*mounted() {
     if (!this.isUserLoggedIn) {
       this.$router.push({
         name: "front-books",
       });
     }
-  },
+  },*/
   computed: {
     ...mapState(["isUserLoggedIn", "user"]),
   },

@@ -197,13 +197,13 @@ export default {
       pageWatcher = null;
     }
   },
-  mounted() {
+  /*mounted() {
     if (!this.isUserLoggedIn) {
       this.$router.push({
         name: "front",
       });
     }
-  },
+  },*/
   computed: {
     ...mapState(["isUserLoggedIn", "user"]),
   },

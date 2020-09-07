@@ -102,7 +102,7 @@
                   required
                   type="text"
                   placeholder="lastname"
-                  v-model="client.lastname"
+                  v-model="client.lastname "
                   class="form-control"
                 />
               </div>
@@ -214,13 +214,13 @@ export default {
       },
     };
   },
-  mounted() {
+  /*mounted() {
     if (!this.isUserLoggedIn) {
         this.$router.push({
             name: "front",
         });
     }
-  },
+  },*/
   computed: {
     ...mapState([
         "isUserLoggedIn", 
