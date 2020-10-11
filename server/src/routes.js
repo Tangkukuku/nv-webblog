@@ -26,29 +26,29 @@ module.exports = (app) => {
     /* RESFUL Api for users management */
     // create user
     app.post('/user',
-        //isAuthenController,
+        isAuthenController,
         UserController.create
     )
 
     // edit user, suspend, active
     app.put('/user/:userId',
-    isAuthenController,
+        isAuthenController,
         UserController.put
     )
     // delete user
     app.delete('/user/:userId',
-    isAuthenController,
+        isAuthenController,
         UserController.remove
     )
     // get user by id
     app.get('/user/:userId',
-    isAuthenController,
+        isAuthenController,
         UserController.show
     )
 
     // get last user
     app.get('/lastuser',
-    isAuthenController,
+        isAuthenController,
         UserController.lastuser
     )
 
@@ -63,22 +63,22 @@ module.exports = (app) => {
     // blog route
     // create blog
     app.post('/blog',
-    isAuthenController,
+        isAuthenController,
         BlogController.create
     )
     // edit blog, suspend, active
     app.put('/blog/:blogId',
-    isAuthenController,
+        isAuthenController,
         BlogController.put
     )
     // delete blog
     app.delete('/blog/:blogId',
-    isAuthenController,
+        isAuthenController,
         BlogController.remove
     )
     // get blog by id
     app.get('/blog/:blogId',
-    isAuthenController,
+        isAuthenController,
         BlogController.show
     )
     // get all blog
@@ -89,22 +89,22 @@ module.exports = (app) => {
     // comment route
     // create comment
     app.post('/comment',
-    isAuthenController,
+        isAuthenController,
         CommentController.create
     )
     // edit comment, suspend, active
     app.put('/comment/:commentId',
-    isAuthenController,
+        isAuthenController,
         CommentController.put
     )
     // delete comment
     app.delete('/comment/:commentId',
-    isAuthenController,
+        isAuthenController,
         CommentController.remove
     )
     // get comment by id
     app.get('/comment/:commentId',
-    isAuthenController,
+        isAuthenController,
         CommentController.show
     )
     // get all comment
@@ -145,13 +145,13 @@ module.exports = (app) => {
     
     // get comment by id
     app.get('/comment/blog/:blogId',
-    isAuthenController,
+        isAuthenController,
         CommentController.blog
     )
 
     // get comment by id
     app.get('/comment/user/:userId',
-    isAuthenController,
+        isAuthenController,
         CommentController.user
     )
     // users
@@ -181,6 +181,7 @@ module.exports = (app) => {
     )
     // get book by id
     app.get('/book/:bookId',
+        isAuthenController,
         BookController.show
     )
     // get all book
